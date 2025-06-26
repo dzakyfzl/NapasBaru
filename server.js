@@ -19,7 +19,7 @@ app.use('/',express.static(path.join(__dirname, 'src')))
 */
 // 1. index atau halaman utama
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'src', 'index.html'))
+    res.sendFile(path.join(__dirname, 'page', 'index.html'))
 })
 
 
