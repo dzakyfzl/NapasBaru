@@ -1,0 +1,24 @@
+{
+  "name": "napasbaru",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dzakyfzl/NapasBaru.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/dzakyfzl/NapasBaru/issues"
+  },
+  "homepage": "https://github.com/dzakyfzl/NapasBaru#readme",
+  "dependencies": {
+    "express.js": "^1.0.0"
+  }
+}
