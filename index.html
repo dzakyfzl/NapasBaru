@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NapasBaru - Pahami Dampaknya, Rasakan Bedanya</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .gradient-bg-1 { background: linear-gradient(135deg, #93c5fd 0%, #60a5fa 50%, #3b82f6 100%); }
+        .gradient-bg-2 { background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); }
+        .gradient-bg-3 { background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%); }
+        .gradient-bg-4 { background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); }
+        .animate-bounce-slow { animation: bounce 2s infinite; }
+        .chat-panel {
+            transform: translateX(100%);
+            transition: transform 0.3s ease-in-out;
+        }
+        .chat-panel.open {
+            transform: translateX(0);
+        }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- Header -->
+    <header class="bg-white shadow-sm border-b sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-8">
+                    <div class="flex items-center space-x-2">
+                        <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-lungs text-white text-sm"></i>
+                        </div>
+                        <span class="text-xl font-bold text-blue-600">NapasBaru</span>
+                    </div>
+                    <nav class="hidden md:flex space-x-6">
+                        <a href="#beranda" class="text-gray-700 hover:text-blue-600 transition-colors">Beranda</a>
+                        <a href="#kalkulator" class="text-gray-700 hover:text-blue-600 transition-colors">Kalkulator</a>
+                        <button onclick="toggleChat()" class="text-gray-700 hover:text-blue-600 flex items-center gap-1 transition-colors">
+                            <i class="fas fa-robot text-sm"></i>
+                            AI
+                        </button>
+                        <a href="#tentang" class="text-gray-700 hover:text-blue-600 transition-colors">Tentang</a>
+                    </nav>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div id="user-section" class="hidden">
+                        <span class="text-sm text-gray-700">Halo, <span id="user-name">Demo User</span></span>
+                        <button onclick="logout()" class="ml-4 px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors">
+                            Keluar
+                        </button>
+                    </div>
+                    <div id="auth-buttons">
+                        <a href="login.html" class="px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors">
+                            Sign In
+                        </a>
+                        <a href="login.html" class="ml-2 px-4 py-2 bg-blue-600 text-white rounded-md text-sm font-medium hover:bg-blue-700 transition-colors">
+                            Log In
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="beranda" class="gradient-bg-1 py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h1 class="text-5xl font-bold text-white mb-6">NapasBaru</h1>
+                    <p class="text-2xl text-white mb-4">
+                        Pahami Dampaknya,<br>
+                        Rasakan Bedanya.
+                    </p>
+                    <p class="text-white/90 mb-8">
+                        Made By <span class="font-semibold">TRIOBLEMAKER</span>
+                    </p>
+                    <button class="px-8 py-3 bg-white text-blue-600 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+                        Mulai Perjalanan Anda
+                    </button>
+                </div>
+                <div class="flex justify-center">
+                    <div class="w-80 h-80 relative">
+                        <i class="fas fa-lungs text-blue-200 text-9xl animate-pulse"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Data Terkini Section -->
+    <section class="gradient-bg-2 py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center gap-3 mb-12">
+                <i class="fas fa-search text-white text-3xl"></i>
+                <h2 class="text-4xl font-bold text-white">Data Terkini</h2>
+            </div>
+
+            <!-- Statistics Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                <div class="bg-red-500 text-white rounded-lg p-6">
+                    <div class="flex items-center gap-3 mb-2">
+                        <i class="fas fa-skull-crossbones text-xl"></i>
+                        <span class="text-sm">Tingkat kematian akibat rokok (2021)</span>
+                    </div>
+                    <div class="text-3xl font-bold">268.600 jiwa</div>
+                </div>
+
+                <div class="bg-purple-500 text-white rounded-lg p-6">
+                    <div class="flex items-center gap-3 mb-2">
+                        <i class="fas fa-users text-xl"></i>
+                        <span class="text-sm">Jumlah perokok dewasa (15+) (2022)</span>
+                    </div>
+                    <div class="text-3xl font-bold">76,7 juta orang</div>
+                </div>
+
+                <div class="bg-orange-600 text-white rounded-lg p-6">
+                    <div class="flex items-center gap-3 mb-2">
+                        <i class="fas fa-trash text-xl"></i>
+                        <span class="text-sm">Sampah puntung rokok per tahun</span>
+                    </div>
+                    <div class="text-3xl font-bold">56.497 ton</div>
+                </div>
+            </div>
+
+            <!-- Charts -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="bg-white rounded-lg p-6">
+                    <h3 class="text-lg font-semibold mb-4">Statistik Perokok Dewasa di Indonesia (15+)</h3>
+                    <div class="h-64">
+                        <canvas id="barChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg p-6">
+                    <h3 class="text-lg font-semibold mb-4">Kematian Terkait Rokok di Indonesia (Per Tahun)</h3>
+                    <div class="h-64">
+                        <canvas id="pieChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Roadmap Section -->
+    <section class="gradient-bg-3 py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div>
+                    <h2 class="text-4xl font-bold text-blue-600 mb-8 flex items-center gap-3">Roadmap 🚩</h2>
+
+                    <div class="space-y-6">
+                        <div class="flex gap-4">
+                            <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
+                                <span class="text-white font-bold text-sm">1</span>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-gray-800 mb-2">TAHAP 1: PERSIAPAN MENTAL & PEMAHAMAN</h3>
+                                <p class="text-gray-700 text-sm">
+                                    Fokus: Mengidentifikasi alasan kuat Anda untuk berhenti dan memahami kebiasaan merokok Anda. Tahap ini juga mencakup penetapan "Hari Berhenti Merokok" sebagai target utama Anda.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-4">
+                            <div class="w-8 h-8 bg-yellow-500 rounded-full flex items-center justify-center flex-shrink-0">
+                                <span class="text-white font-bold text-sm">2</span>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-gray-800 mb-2">TAHAP 2: PERSIAPAN FISIK & LINGKUNGAN</h3>
+                                <p class="text-gray-700 text-sm">
+                                    Fokus: Mempersiapkan lingkungan Anda agar bebas dari pemicu rokok. Anda juga akan menyiapkan alternatif sehat untuk mengganti kebiasaan merokok.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-4">
+                            <div class="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center flex-shrink-0">
+                                <span class="text-white font-bold text-sm">3</span>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-gray-800 mb-2">TAHAP 3: HARI BERHENTI MEROKOK (HARI H)</h3>
+                                <p class="text-gray-700 text-sm">
+                                    Fokus: Hari ini adalah komitmen total untuk tidak merokok selamanya. Anda akan langsung menghentikan dan mengatasi gejala putus nikotin serta memantau fitur kalkulator finansial akan membantu Anda melihat penghematan.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-4">
+                            <div class="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center flex-shrink-0">
+                                <span class="text-white font-bold text-sm">4</span>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-gray-800 mb-2">TAHAP 4: MINGGU PERTAMA TANPA ROKOK</h3>
+                                <p class="text-gray-700 text-sm">
+                                    Fokus: Melewati minggu krusial pertama dengan memantau kemajuan fisik, dan memberikan apresiasi kecil pada diri sendiri. Fitur kalkulator finansial akan membantu Anda melihat penghematan.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-4">
+                            <div class="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center flex-shrink-0">
+                                <span class="text-white font-bold text-sm">5</span>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-gray-800 mb-2">TAHAP 5: BULAN PERTAMA</h3>
+                                <p class="text-gray-700 text-sm">
+                                    Fokus: Membangun kebiasaan baru yang positif dan sehat untuk mengganti rutinitas merokok lama Anda. Tahap ini juga melibatkan refleksi atas kemajuan dan berbagi pengalaman melalui fitur feedback.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-4">
+                            <div class="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center flex-shrink-0">
+                                <span class="text-white font-bold text-sm">6</span>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-gray-800 mb-2">TAHAP 6: MENJAGA KONSISTENSI</h3>
+                                <p class="text-gray-700 text-sm">
+                                    Fokus: Memastikan keberlanjutan Anda sebagai non-perokok dalam jangka panjang. Anda akan belajar untuk tetap waspada terhadap kekambuhan, berbagi kisah sukses di fitur testimoni, dan terus memantau NapasBaru sebagai pendamping setia.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex justify-center items-center">
+                    <div class="w-80 h-80 flex items-center justify-center">
+                        <i class="fas fa-calendar-alt text-red-400 text-9xl"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Financial Calculator Section -->
+    <section id="kalkulator" class="gradient-bg-2 py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl font-bold text-white text-center mb-12 flex items-center justify-center gap-3">
+                <i class="fas fa-calculator"></i>
+                Kalkulator Finansial
+            </h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="flex justify-center">
+                    <div class="bg-white/10 backdrop-blur-sm rounded-lg p-6 w-full max-w-md">
+                        <div class="flex items-center gap-2 text-white mb-6">
+                            <i class="fas fa-dollar-sign text-xl"></i>
+                            <h3 class="text-xl font-bold">Kalkulator Finansial</h3>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <div>
+                                <label for="price" class="block text-white mb-2">Masukkan harga rokok anda:</label>
+                                <input 
+                                    type="number" 
+                                    id="price" 
+                                    placeholder="Contoh: 25000"
+                                    class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                >
+                            </div>
+
+                            <div>
+                                <label for="packs" class="block text-white mb-2">Masukkan berapa bungkus rokok yang anda habiskan selama seminggu:</label>
+                                <input 
+                                    type="number" 
+                                    id="packs" 
+                                    placeholder="Contoh: 7"
+                                    class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                >
+                            </div>
+
+                            <button 
+                                onclick="calculateCosts()" 
+                                class="w-full px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors"
+                            >
+                                Hitung Pengeluaran
+                            </button>
+
+                            <div id="calculation-result" class="hidden mt-6 p-4 bg-white/10 rounded-lg backdrop-blur-sm">
+                                <h4 class="font-semibold text-white mb-3">Hasil Perhitungan:</h4>
+                                <div class="space-y-2 text-white">
+                                    <div class="flex justify-between">
+                                        <span>Per Hari:</span>
+                                        <span class="font-semibold" id="daily-cost"></span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span>Per Minggu:</span>
+                                        <span class="font-semibold" id="weekly-cost"></span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span>Per Bulan:</span>
+                                        <span class="font-semibold" id="monthly-cost"></span>
+                                    </div>
+                                    <div class="flex justify-between border-t border-white/20 pt-2">
+                                        <span>Per Tahun:</span>
+                                        <span class="font-bold text-lg" id="yearly-cost"></span>
+                                    </div>
+                                </div>
+                                <p class="text-sm text-white/80 mt-3">💡 Bayangkan apa yang bisa Anda beli dengan uang sebesar itu!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex justify-center">
+                    <div class="w-80 h-80 flex items-center justify-center">
+                        <i class="fas fa-piggy-bank text-orange-300 text-9xl"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="gradient-bg-3 py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-4xl font-bold text-purple-600 mb-12">🦄 TRIOBLEMAKER</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="text-center">
+                    <div class="w-32 h-32 bg-gray-300 rounded-full mx-auto mb-4 flex items-center justify-center">
+                        <span class="text-4xl">😊</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800">M. Dzaky Fazil</h3>
+                    <p class="text-gray-600">S1 Informatika</p>
+                </div>
+
+                <div class="text-center">
+                    <div class="w-32 h-32 bg-gray-300 rounded-full mx-auto mb-4 flex items-center justify-center">
+                        <span class="text-4xl">😎</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800">M Abdillah Hafizh</h3>
+                    <p class="text-gray-600">S1 Informatika</p>
+                </div>
+
+                <div class="text-center">
+                    <div class="w-32 h-32 bg-gray-300 rounded-full mx-auto mb-4 flex items-center justify-center">
+                        <span class="text-4xl">😟</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800">Astrid Fayyaza Danishara</h3>
+                    <p class="text-gray-600">D3 RPLA</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feedback Section -->
+    <section class="gradient-bg-2 py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-4xl font-bold text-white mb-8 flex items-center gap-3">Feedback 👍</h2>
+
+                    <form id="feedback-form" class="space-y-6">
+                        <div>
+                            <label for="name" class="block text-white mb-2">Masukkan nama anda:</label>
+                            <input 
+                                type="text" 
+                                id="name" 
+                                name="name" 
+                                required 
+                                class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                placeholder="Nama lengkap Anda"
+                            >
+                        </div>
+
+                        <div>
+                            <label for="message" class="block text-white mb-2">Masukkan saran/kritik/pesan:</label>
+                            <textarea 
+                                id="message" 
+                                name="message" 
+                                required 
+                                rows="5"
+                                class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                placeholder="Bagikan feedback Anda untuk membantu kami berkembang..."
+                            ></textarea>
+                        </div>
+
+                        <button 
+                            type="submit" 
+                            class="px-6 py-3 bg-white text-blue-600 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
+                        >
+                            Kirim Feedback
+                        </button>
+                    </form>
+
+                    <div id="feedback-message" class="mt-4 p-3 rounded-md hidden"></div>
+                </div>
+
+                <div class="flex justify-center">
+                    <div class="w-80 h-80 flex items-center justify-center">
+                        <i class="fas fa-rocket text-blue-200 text-9xl animate-bounce-slow"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="tentang" class="gradient-bg-4 py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl font-bold text-white text-center mb-12">Testimoni</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-lg p-6">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 bg-gray-300 rounded-full flex items-center justify-center">
+                            <span class="text-lg">👤</span>
+                        </div>
+                        <span class="font-semibold">Memet</span>
+                    </div>
+                    <p class="text-gray-700 text-sm">
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit"
+                    </p>
+                </div>
+
+                <div class="bg-white rounded-lg p-6">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 bg-gray-300 rounded-full flex items-center justify-center">
+                            <span class="text-lg">👤</span>
+                        </div>
+                        <span class="font-semibold">Memet</span>
+                    </div>
+                    <p class="text-gray-700 text-sm">
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit"
+                    </p>
+                </div>
+
+                <div class="bg-white rounded-lg p-6">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 bg-gray-300 rounded-full flex items-center justify-center">
+                            <span class="text-lg">👤</span>
+                        </div>
+                        <span class="font-semibold">Memet</span>
+                    </div>
+                    <p class="text-gray-700 text-sm">
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit"
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-blue-600 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-white">Trioblemaker</p>
+        </div>
+    </footer>
+
+    <!-- AI Chat Panel -->
+    <div id="chat-panel" class="chat-panel fixed inset-y-0 right-0 w-96 bg-white shadow-2xl border-l z-50 flex flex-col">
+        <div class="flex items-center justify-between p-4 border-b">
+            <div class="flex items-center gap-2">
+                <i class="fas fa-robot text-blue-600"></i>
+                <h3 class="font-semibold">AI Assistant NapasBaru</h3>
+            </div>
+            <button onclick="toggleChat()" class="text-gray-500 hover:text-gray-700">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
+        <div id="chat-messages" class="flex-1 p-4 overflow-y-auto">
+            <div class="flex justify-start mb-4">
+                <div class="bg-gray-100 rounded-lg px-4 py-2 max-w-[80%]">
+                    <p class="text-sm">Halo! Saya adalah asisten AI NapasBaru. Saya siap membantu Anda dengan informasi tentang kesehatan paru-paru, tips berhenti merokok, dan menjawab pertanyaan seputar program kami. Ada yang bisa saya bantu?</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="p-4 border-t">
+            <div class="flex gap-2">
+                <input 
+                    type="text" 
+                    id="chat-input" 
+                    placeholder="Tanyakan sesuatu..."
+                    class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    onkeypress="handleChatKeyPress(event)"
+                >
+                <button onclick="sendMessage()" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Menu Button -->
+    <button id="mobile-menu-btn" class="md:hidden fixed bottom-4 right-4 bg-blue-600 text-white p-3 rounded-full shadow-lg z-40" onclick="toggleMobileMenu()">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <script src="script.js"></script>
+</body>
+</html>

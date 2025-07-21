@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - NapasBaru</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .gradient-bg { background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 50%, #2563eb 100%); }
+    </style>
+</head>
+<body class="gradient-bg min-h-screen flex items-center justify-center p-4">
+    <div class="bg-white rounded-lg shadow-xl w-full max-w-md">
+        <div class="p-6 text-center border-b">
+            <h1 class="text-2xl font-bold text-blue-600 mb-2">NapasBaru</h1>
+            <p class="text-gray-600">Masuk atau daftar untuk melanjutkan</p>
+        </div>
+        
+        <div class="p-6">
+            <div class="flex mb-6">
+                <button id="signin-tab" class="flex-1 py-2 px-4 text-center font-medium border-b-2 border-blue-600 text-blue-600" onclick="switchTab('signin')">
+                    Masuk
+                </button>
+                <button id="signup-tab" class="flex-1 py-2 px-4 text-center font-medium border-b-2 border-transparent text-gray-500" onclick="switchTab('signup')">
+                    Daftar
+                </button>
+            </div>
+
+            <!-- Sign In Form -->
+            <div id="signin-form" class="space-y-4">
+                <div>
+                    <label for="signin-email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                    <input 
+                        type="email" 
+                        id="signin-email" 
+                        required 
+                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        placeholder="nama@email.com"
+                    >
+                </div>
+                <div>
+                    <label for="signin-password" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                    <input 
+                        type="password" 
+                        id="signin-password" 
+                        required 
+                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        placeholder="Password Anda"
+                    >
+                </div>
+                <button 
+                    onclick="handleSignIn()" 
+                    class="w-full py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors"
+                >
+                    Masuk
+                </button>
+            </div>
+
+            <!-- Sign Up Form -->
+            <div id="signup-form" class="space-y-4 hidden">
+                <div>
+                    <label for="signup-name" class="block text-sm font-medium text-gray-700 mb-1">Nama Lengkap</label>
+                    <input 
+                        type="text" 
+                        id="signup-name" 
+                        required 
+                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        placeholder="Nama lengkap Anda"
+                    >
+                </div>
+                <div>
+                    <label for="signup-email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                    <input 
+                        type="email" 
+                        id="signup-email" 
+                        required 
+                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        placeholder="nama@email.com"
+                    >
+                </div>
+                <div>
+                    <label for="signup-password" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                    <input 
+                        type="password" 
+                        id="signup-password" 
+                        required 
+                        minlength="6"
+                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        placeholder="Minimal 6 karakter"
+                    >
+                </div>
+                <button 
+                    onclick="handleSignUp()" 
+                    class="w-full py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors"
+                >
+                    Daftar
+                </button>
+            </div>
+
+            <div id="auth-message" class="mt-4 p-3 rounded-md hidden"></div>
+
+            <div class="mt-6 text-center">
+                <a href="index.html" class="text-sm text-blue-600 hover:underline">
+                    ← Kembali ke beranda
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function switchTab(tab) {
+            const signinTab = document.getElementById('signin-tab');
+            const signupTab = document.getElementById('signup-tab');
+            const signinForm = document.getElementById('signin-form');
+            const signupForm = document.getElementById('signup-form');
+
+            if (tab === 'signin') {
+                signinTab.classList.add('border-blue-600', 'text-blue-600');
+                signinTab.classList.remove('border-transparent', 'text-gray-500');
+                signupTab.classList.add('border-transparent', 'text-gray-500');
+                signupTab.classList.remove('border-blue-600', 'text-blue-600');
+                signinForm.classList.remove('hidden');
+                signupForm.classList.add('hidden');
+            } else {
+                signupTab.classList.add('border-blue-600', 'text-blue-600');
+                signupTab.classList.remove('border-transparent', 'text-gray-500');
+                signinTab.classList.add('border-transparent', 'text-gray-500');
+                signinTab.classList.remove('border-blue-600', 'text-blue-600');
+                signupForm.classList.remove('hidden');
+                signinForm.classList.add('hidden');
+            }
+        }
+
+        function showMessage(message, isSuccess = true) {
+            const messageDiv = document.getElementById('auth-message');
+            messageDiv.textContent = message;
+            messageDiv.className = `mt-4 p-3 rounded-md ${isSuccess ? 'bg-green-50 text-green-700 border border-green-200' : 'bg-red-50 text-red-700 border border-red-200'}`;
+            messageDiv.classList.remove('hidden');
+        }
+
+        function handleSignIn() {
+            const email = document.getElementById('signin-email').value;
+            const password = document.getElementById('signin-password').value;
+
+            if (!email || !password) {
+                showMessage('Email dan password harus diisi', false);
+                return;
+            }
+
+            // Simulate login
+            localStorage.setItem('user', JSON.stringify({
+                email: email,
+                name: email.split('@')[0]
+            }));
+
+            showMessage('Login berhasil! Mengalihkan...', true);
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 1500);
+        }
+
+        function handleSignUp() {
+            const name = document.getElementById('signup-name').value;
+            const email = document.getElementById('signup-email').value;
+            const password = document.getElementById('signup-password').value;
+
+            if (!name || !email || !password) {
+                showMessage('Semua field harus diisi', false);
+                return;
+            }
+
+            if (password.length < 6) {
+                showMessage('Password minimal 6 karakter', false);
+                return;
+            }
+
+            // Simulate signup
+            localStorage.setItem('user', JSON.stringify({
+                email: email,
+                name: name
+            }));
+
+            showMessage('Akun berhasil dibuat! Mengalihkan...', true);
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 1500);
+        }
+    </script>
+</body>
+</html>
