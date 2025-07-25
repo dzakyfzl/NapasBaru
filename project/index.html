@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NapasBaru - Pahami Dampaknya, Rasakan Bedanya</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="font-inter">
+    <!-- Header -->
+    <header class="fixed top-0 left-0 right-0 bg-white/90 backdrop-blur-sm z-50 border-b border-gray-200">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center">
+                        <span class="text-white font-bold text-sm">🫁</span>
+                    </div>
+                    <span class="text-xl font-bold text-blue-600">NapasBaru</span>
+                </div>
+                
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="#beranda" class="text-gray-700 hover:text-blue-600 transition-colors font-medium nav-link">Beranda</a>
+                    <a href="#kalkulator" class="text-gray-700 hover:text-blue-600 transition-colors font-medium nav-link">Kalkulator</a>
+                    <button id="aiButton" class="text-gray-700 hover:text-blue-600 transition-colors font-medium">AI</button>
+                    <a href="#tentang" class="text-gray-700 hover:text-blue-600 transition-colors font-medium nav-link">Tentang</a>
+                </nav>
+                
+                <div class="flex items-center space-x-3">
+                    <button class="px-4 py-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors font-medium">Sign In</button>
+                    <button class="px-4 py-2 bg-blue-600 text-white hover:bg-blue-700 rounded-lg transition-colors font-medium">Log In</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- AI Chat Split Screen -->
+    <div id="aiChatOverlay" class="fixed inset-0 bg-black/50 z-40 hidden">
+        <div class="flex h-full">
+            <div class="flex-1" onclick="closeAIChat()"></div>
+            <div class="w-96 bg-white h-full shadow-2xl">
+                <div class="p-4 border-b border-gray-200 flex items-center justify-between">
+                    <h3 class="font-semibold text-lg">AI Assistant</h3>
+                    <button onclick="closeAIChat()" class="p-2 hover:bg-gray-100 rounded-lg">✕</button>
+                </div>
+                <div class="flex-1 p-4 h-full overflow-y-auto">
+                    <div class="space-y-4" id="chatMessages">
+                        <div class="bg-gray-100 p-3 rounded-lg">
+                            <p class="text-sm">Halo! Saya adalah AI assistant yang siap membantu Anda dalam perjalanan berhenti merokok. Ada yang bisa saya bantu?</p>
+                        </div>
+                    </div>
+                    <div class="absolute bottom-4 left-4 right-4">
+                        <div class="flex space-x-2">
+                            <input type="text" id="chatInput" placeholder="Ketik pesan Anda..." class="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm">
+                            <button onclick="sendMessage()" class="px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm whitespace-nowrap">Kirim</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main class="transition-all duration-300" id="mainContent">
+        <!-- Hero Section -->
+        <section id="beranda" class="min-h-screen bg-gradient-to-br from-blue-100 via-blue-200 to-blue-400 pt-20">
+            <div class="container mx-auto px-6 py-20">
+                <div class="flex items-center justify-between min-h-[80vh]">
+                    <div class="flex-1">
+                        <h1 class="text-6xl font-bold text-gray-800 mb-4">NapasBaru</h1>
+                        <p class="text-2xl text-gray-700 mb-2">Pahami Dampaknya,</p>
+                        <p class="text-2xl text-gray-700 mb-8">Rasakan Bedanya.</p>
+                        <p class="text-lg text-gray-600">Made By <span class="font-semibold text-purple-600">TRIOBLEMMAKER</span></p>
+                    </div>
+                    <div class="flex-1 flex justify-center">
+                        <div class="w-96 h-96 bg-blue-300/30 rounded-full flex items-center justify-center">
+                            <div class="text-8xl">🫁</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Data Terkini Section -->
+        <section class="bg-gradient-to-r from-blue-500 to-blue-600 py-16">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl font-bold text-white mb-4 flex items-center">
+                    Data Terkini 🔍
+                </h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                    <div class="bg-red-500 text-white p-6 rounded-xl">
+                        <div class="flex items-center mb-2">
+                            <span class="text-2xl mr-2">😷</span>
+                            <span class="text-sm">Tingkat kematian akibat rokok (2021)</span>
+                        </div>
+                        <div class="text-3xl font-bold">268.600 jiwa</div>
+                    </div>
+                    
+                    <div class="bg-purple-500 text-white p-6 rounded-xl">
+                        <div class="flex items-center mb-2">
+                            <span class="text-2xl mr-2">👥</span>
+                            <span class="text-sm">Jumlah perokok dewasa (15+)</span>
+                        </div>
+                        <div class="text-3xl font-bold">76,7 juta orang</div>
+                    </div>
+                    
+                    <div class="bg-orange-600 text-white p-6 rounded-xl">
+                        <div class="flex items-center mb-2">
+                            <span class="text-2xl mr-2">🚛</span>
+                            <span class="text-sm">Sampah puntung rokok per tahun</span>
+                        </div>
+                        <div class="text-3xl font-bold">56.497 ton</div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div class="bg-white p-6 rounded-xl shadow-lg">
+                        <h3 class="font-semibold text-lg mb-4">Statistik Perokok Dewasa di Indonesia (15+)</h3>
+                        <div class="h-64 bg-gray-100 rounded-lg flex items-center justify-center">
+                            <span class="text-gray-500">Chart Placeholder - Pria vs Wanita</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-xl shadow-lg">
+                        <h3 class="font-semibold text-lg mb-4">Kematian Terkait Rokok di Indonesia (Per Tahun)</h3>
+                        <div class="h-64 bg-gray-100 rounded-lg flex items-center justify-center">
+                            <span class="text-gray-500">Chart Placeholder - Pie Chart</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Roadmap Section -->
+        <section class="bg-gradient-to-br from-blue-200 to-blue-300 py-16">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl font-bold text-gray-800 mb-12 flex items-center">
+                    Roadmap 🚀
+                </h2>
+                
+                <div class="space-y-8">
+                    <div class="flex items-start space-x-4">
+                        <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white font-bold">1</div>
+                        <div class="flex-1">
+                            <h3 class="font-bold text-lg text-gray-800 mb-2">Tahap 1: PERSIAPAN MENTAL & PEMAHAMAN</h3>
+                            <p class="text-gray-700">Fokus: Mengidentifikasi alasan kuat Anda untuk berhenti dan memahami pola kebiasaan merokok Anda. Tahap ini juga mencakup penetapan "Hari Berhenti Merokok" sebagai target utama Anda.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start space-x-4">
+                        <div class="w-8 h-8 bg-yellow-500 rounded-full flex items-center justify-center text-white font-bold">2</div>
+                        <div class="flex-1">
+                            <h3 class="font-bold text-lg text-gray-800 mb-2">Tahap 2: PERSIAPAN FISIK & LINGKUNGAN</h3>
+                            <p class="text-gray-700">Fokus: Mempersiapkan lingkungan Anda agar bebas dari pemicu rokok dan membangun sistem dukungan sosial. Anda juga akan menyiapkan alternatif sehat untuk mengganti kebiasaan merokok.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start space-x-4">
+                        <div class="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center text-white font-bold">3</div>
+                        <div class="flex-1">
+                            <h3 class="font-bold text-lg text-gray-800 mb-2">TAHAP 3: HARI BERHENTI MEROKOK (HARI H)</h3>
+                            <p class="text-gray-700">Fokus: Hari ini adalah momen keputusan Anda! merokok sebatang pun Anda akan langsung menghadapi dan mengatasi gejala putus nikotin serta memantisikan fitur chatbot NapasBaru untuk dukungan instan.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start space-x-4">
+                        <div class="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center text-white font-bold">4</div>
+                        <div class="flex-1">
+                            <h3 class="font-bold text-lg text-gray-800 mb-2">TAHAP 4: MINGGU PERTAMA TANPA ROKOK</h3>
+                            <p class="text-gray-700">Fokus: Bertahan minggu krusial pertama dengan memantau kemajuan, menghindari pemicu, dan memberikan apresiasi kecil pada diri sendiri fitur kalkulator finansial akan membantu Anda melihat penghematan.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start space-x-4">
+                        <div class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold">5</div>
+                        <div class="flex-1">
+                            <h3 class="font-bold text-lg text-gray-800 mb-2">TAHAP 5: BULAN PERTAMA</h3>
+                            <p class="text-gray-700">Fokus: Membangun kebiasaan baru yang positif dan sehat untuk menggantikan rutinitas merokok lama Anda. Tahap ini juga melibatkan refleksi atas kemajuan dan berbagi pengalaman melalui fitur feedback.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start space-x-4">
+                        <div class="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center text-white font-bold">6</div>
+                        <div class="flex-1">
+                            <h3 class="font-bold text-lg text-gray-800 mb-2">TAHAP 6: MENJAGA KONSISTENSI</h3>
+                            <p class="text-gray-700">Fokus: Memastikan keberlanjutan Anda sebagai non-perokok dalam jangka panjang. Anda akan belajar untuk tetap waspada terhadap kekambuhan, berbagi kisah sukses di fitur testimoni, dan terus memanfaatkan NapasBaru sebagai pendamping setia.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-16 text-center">
+                    <div class="w-64 h-64 bg-red-400/30 rounded-xl mx-auto flex items-center justify-center">
+                        <span class="text-6xl">🚀</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Kalkulator Section -->
+        <section id="kalkulator" class="bg-gradient-to-r from-blue-500 to-blue-600 py-16">
+            <div class="container mx-auto px-6">
+                <div class="flex items-center justify-between">
+                    <div class="flex-1">
+                        <h2 class="text-4xl font-bold text-white mb-8 flex items-center">
+                            Kalkulator Finansial 💰
+                        </h2>
+                        
+                        <div class="space-y-6">
+                            <div>
+                                <label class="block text-white mb-2 font-medium">Masukkan harga rokok anda:</label>
+                                <input type="number" id="hargaRokok" placeholder="Contoh: 25000" class="w-full px-4 py-3 rounded-lg border-0 focus:outline-none focus:ring-2 focus:ring-blue-300">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-white mb-2 font-medium">Masukkan berapa bungkus rokok yang anda habiskan selama seminggu:</label>
+                                <input type="number" id="bungkusPerMinggu" placeholder="Contoh: 7" class="w-full px-4 py-3 rounded-lg border-0 focus:outline-none focus:ring-2 focus:ring-blue-300">
+                            </div>
+                            
+                            <button onclick="hitungPengeluaran()" class="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
+                                Hitung Pengeluaran
+                            </button>
+                            
+                            <div>
+                                <label class="block text-white mb-2 font-medium">Jawaban:</label>
+                                <div id="hasilKalkulator" class="w-full min-h-[120px] bg-white p-4 rounded-lg text-gray-800">
+                                    <p class="text-gray-500">Hasil perhitungan akan muncul di sini...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex-1 flex justify-center">
+                        <div class="w-80 h-80 bg-orange-400/30 rounded-xl flex items-center justify-center">
+                            <span class="text-8xl">💰</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trioblemmaker Section -->
+        <section id="tentang" class="bg-gradient-to-br from-blue-200 to-blue-300 py-16">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold text-purple-600 mb-4 flex items-center justify-center">
+                        👾 TRIOBLEMMAKER 👾
+                    </h2>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
+                    <div class="text-center">
+                        <div class="w-32 h-32 bg-gray-300 rounded-full mx-auto mb-4 flex items-center justify-center">
+                            <span class="text-4xl">👨‍💻</span>
+                        </div>
+                        <h3 class="font-bold text-lg text-gray-800">M. Dzaky Fazil</h3>
+                        <p class="text-gray-600">S1 Informatika</p>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="w-32 h-32 bg-gray-300 rounded-full mx-auto mb-4 flex items-center justify-center">
+                            <span class="text-4xl">👨‍💻</span>
+                        </div>
+                        <h3 class="font-bold text-lg text-gray-800">M Abdillah Hafizh</h3>
+                        <p class="text-gray-600">S1 Informatika</p>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="w-32 h-32 bg-gray-300 rounded-full mx-auto mb-4 flex items-center justify-center">
+                            <span class="text-4xl">👩‍💻</span>
+                        </div>
+                        <h3 class="font-bold text-lg text-gray-800">Astrid Fayyaza Danishara</h3>
+                        <p class="text-gray-600">D3 RPLA</p>
+                    </div>
+                </div>
+
+                <!-- Feedback Section -->
+                <div class="bg-gradient-to-r from-blue-500 to-blue-600 rounded-2xl p-12 mb-16">
+                    <div class="flex items-center justify-between">
+                        <div class="flex-1">
+                            <h3 class="text-3xl font-bold text-white mb-8 flex items-center">
+                                Feedback 👍
+                            </h3>
+                            
+                            <div class="space-y-6">
+                                <div>
+                                    <label class="block text-white mb-2">Masukkan nama anda:</label>
+                                    <input type="text" id="namaFeedback" class="w-full px-4 py-3 rounded-lg border-0 focus:outline-none focus:ring-2 focus:ring-blue-300">
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-white mb-2">Masukkan saran/kritik/pesan:</label>
+                                    <textarea id="pesanFeedback" rows="5" class="w-full px-4 py-3 rounded-lg border-0 focus:outline-none focus:ring-2 focus:ring-blue-300"></textarea>
+                                </div>
+                                
+                                <button onclick="kirimFeedback()" class="bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
+                                    Kirim Feedback
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="flex-1 flex justify-center">
+                            <div class="w-80 h-80 bg-red-400/30 rounded-xl flex items-center justify-center">
+                                <span class="text-8xl">🚀</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimoni Section -->
+                <div class="bg-blue-600 rounded-2xl p-12">
+                    <h3 class="text-3xl font-bold text-white mb-8 text-center">Testimoni</h3>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="bg-white p-6 rounded-xl">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 bg-gray-300 rounded-full mr-3 flex items-center justify-center">
+                                    <span class="text-xl">👤</span>
+                                </div>
+                                <span class="font-semibold">Memet</span>
+                            </div>
+                            <p class="text-gray-700 text-sm">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit</p>
+                        </div>
+                        
+                        <div class="bg-white p-6 rounded-xl">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 bg-gray-300 rounded-full mr-3 flex items-center justify-center">
+                                    <span class="text-xl">👤</span>
+                                </div>
+                                <span class="font-semibold">Memet</span>
+                            </div>
+                            <p class="text-gray-700 text-sm">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit</p>
+                        </div>
+                        
+                        <div class="bg-white p-6 rounded-xl">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 bg-gray-300 rounded-full mr-3 flex items-center justify-center">
+                                    <span class="text-xl">👤</span>
+                                </div>
+                                <span class="font-semibold">Memet</span>
+                            </div>
+                            <p class="text-gray-700 text-sm">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit</p>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center mt-8">
+                        <p class="text-white text-sm">Trioblemmaker</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
